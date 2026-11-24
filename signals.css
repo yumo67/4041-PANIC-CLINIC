@@ -1,0 +1,116 @@
+/* Decorative cues, isolated from hitboxes, readability and the sound mix. */
+#audio-toggle { position: relative; }
+#audio-toggle[data-playing=true]::after {
+  position: absolute; content: ""; width: 5px; height: 5px; inset: 5px 5px auto auto;
+  border-radius: 50%; background: var(--score-color);
+  box-shadow: 0 0 0 1px color-mix(in oklch, currentColor 54%, transparent);
+}
+.mix-levels {
+  margin: 5px 0 7px; padding: 0 10px;
+  background: var(--rx-paper); border: 1px solid var(--rx-border); border-radius: 6px;
+}
+.mix-levels .setting-row {
+  display: grid; grid-template-columns: minmax(0,1fr) minmax(72px,44%);
+  gap: 7px 12px; min-height: 46px;
+}
+.mix-levels .setting-row:last-child { border-bottom: 0; }
+.mix-levels input[type=range] { width: 100%; max-width: none; }
+.mix-levels b { white-space: nowrap; }
+
+body[data-view=door] .pet { display: none; }
+body[data-view=door] #door {
+  background: linear-gradient(130deg,#ad80670c,transparent 37%),radial-gradient(ellipse at 50% 0%,#1e191b 0,transparent 86%);
+}
+body[data-view=door] .door-conversation {
+  text-shadow: 0 1px 12px #120e11;
+}
+#rain.rain-finale .rain-clock { color: #ffb7a5; border-color: #ce7769; }
+
+@media (prefers-reduced-motion: no-preference) {
+  body:not(.quiet-effects):not(.reduce-motion) #home .poster-circuit::after {
+    content: ""; position: absolute; inset: 0;
+    background: linear-gradient(102deg,transparent 36%,#ffd6b615 48%,#ffb5be29 49%,transparent 59%);
+    animation: poster-sweep 10s linear infinite; pointer-events: none;
+  }
+  body:not(.quiet-effects):not(.reduce-motion) #home[data-signal=arrival] .hero-menu,
+  body:not(.quiet-effects):not(.reduce-motion) #novel[data-signal=arrival] .vn-window,
+  body:not(.quiet-effects):not(.reduce-motion) #game[data-signal=arrival] .game-main {
+    animation: signal-arrive .4s cubic-bezier(.19,.8,.24,1) both;
+  }
+  body:not(.quiet-effects):not(.reduce-motion) #modal[data-signal=file] .modal-content {
+    animation: signal-arrive .25s cubic-bezier(.19,.8,.24,1) both;
+  }
+  body:not(.quiet-effects):not(.reduce-motion) #novel .vn-scene.scene-in .vn-frame::before {
+    content: ""; position: absolute; inset: 0; pointer-events: none;
+    background: linear-gradient(transparent 34%,#f8bfd934 48%,#ffe0cb27 49%,transparent 55%);
+    animation: film-scan .55s ease-out both;
+  }
+  body:not(.quiet-effects):not(.reduce-motion) .consult-desk[data-signal=paper] .consult-speech {
+    animation: signal-arrive .23s ease-out both;
+  }
+  body:not(.quiet-effects):not(.reduce-motion) .consult-photo:is([data-signal=warm],[data-signal=steam])::before {
+    animation: bedside-warmth .8s ease-out both;
+  }
+  body:not(.quiet-effects):not(.reduce-motion) .consult-photo[data-signal=steam]::before {
+    --bedside-glow: #ffd1a5;
+    animation-duration: 1.15s;
+  }
+  body:not(.quiet-effects):not(.reduce-motion) .pulse-card[data-signal=meter],
+  body:not(.quiet-effects):not(.reduce-motion) #pulse[data-signal=meter] {
+    border-color: var(--rx-accent);
+    animation: signal-highlight .46s ease-out both;
+  }
+  body:not(.quiet-effects):not(.reduce-motion) .pulse-card[data-signal=miss] #beat-lane {
+    animation: meter-miss .24s ease-in-out both;
+  }
+  body:not(.quiet-effects):not(.reduce-motion) .pet.docked:is(.munch,.pulse) .pet-hit {
+    animation: companion-warmth .6s ease-out both;
+  }
+  body:not(.quiet-effects):not(.reduce-motion)[data-view=door] #door[data-signal=threshold] .door-foyer {
+    animation: light-falls .85s ease-out both;
+  }
+  body:not(.quiet-effects):not(.reduce-motion) .arena[data-signal]::after {
+    content: ""; position: absolute; z-index: 2; inset: 0; border-radius: inherit; pointer-events: none;
+    box-shadow: inset 0 0 24px 4px var(--arena-signal,#e399b05c);
+    animation: arena-signal .48s ease-out both;
+  }
+  body:not(.quiet-effects):not(.reduce-motion) .arena[data-signal=hurt] {
+    --arena-signal: #ff72758a;
+    animation: arena-impact .19s ease-out both;
+  }
+  body:not(.quiet-effects):not(.reduce-motion) .arena[data-signal=pulse] { --arena-signal: #abffda9e; }
+  body:not(.quiet-effects):not(.reduce-motion) .arena[data-signal=wave] { --arena-signal: #c7b5ff91; }
+  body:not(.quiet-effects):not(.reduce-motion) .arena[data-signal=combo] { --arena-signal: #ffc99388; }
+  body:not(.quiet-effects):not(.reduce-motion) .arena[data-signal=bonus] { --arena-signal: #ffe0af92; }
+  body:not(.quiet-effects):not(.reduce-motion) .arena[data-signal=pulse]::after,
+  body:not(.quiet-effects):not(.reduce-motion) .arena[data-signal=wave]::after { animation-duration: .75s; }
+  #rain:not(.rain-still) .rain-pop::before {
+    content: ""; position: absolute; inset: 50% auto auto 50%; width: 18px; height: 18px;
+    border: 2px solid #ffe3fbad; border-radius: 50%; pointer-events: none;
+    animation: rain-ring .39s ease-out both;
+  }
+  #rain:not(.rain-still) .rain-pop i { border-radius: 1px; rotate: 27deg; }
+}
+
+@keyframes poster-sweep {
+  0%, 41% { transform: translateX(-110%); }
+  66%, 100% { transform: translateX(110%); }
+}
+@keyframes signal-arrive { from { opacity: .64; transform: translateY(5px); } }
+@keyframes film-scan {
+  from { opacity: .8; transform: translateY(-48%); }
+  to { opacity: 0; transform: translateY(51%); }
+}
+@keyframes bedside-warmth {
+  from { box-shadow: inset 0 0 62px 8px var(--bedside-glow,#fbc0bb); opacity: .9; }
+}
+@keyframes signal-highlight { from { box-shadow: 0 0 0 2px var(--rx-accent); } }
+@keyframes meter-miss { 25% { translate: -2px 0; } 58% { translate: 2px 0; } }
+@keyframes companion-warmth { from { box-shadow: inset 0 0 35px #ffbcca9c; } }
+@keyframes light-falls { from { filter: brightness(.56); opacity: .35; } }
+@keyframes arena-signal { from { opacity: .9; } to { opacity: 0; } }
+@keyframes arena-impact { 25% { translate: 2px 0; } 58% { translate: -2px 0; } }
+@keyframes rain-ring {
+  from { transform: translate(-50%,-50%) scale(.3); opacity: .8; }
+  to { transform: translate(-50%,-50%) scale(2.8); opacity: 0; }
+}

@@ -1,0 +1,763 @@
+<!doctype html>
+<html lang="ja" data-theme="day">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#f7f1eb">
+  <meta name="description" content="パニック診療所の夜勤端末。先生とデジタルウイルスを診察する、短編ノベルとアーケードゲーム。">
+  <title>パニック診療所 · 4041 PANIC CLINIC</title>
+  <link rel="icon" href="./assets/pill.webp">
+  <link rel="preload" href="./assets/maru-bold.woff" as="font" type="font/woff" crossorigin>
+  <link rel="stylesheet" href="./style.css?v=36">
+  <link rel="stylesheet" href="./clinic.css?v=36">
+  <link rel="stylesheet" href="./night.css?v=36">
+  <link rel="stylesheet" href="./afterhours.css?v=36">
+  <link rel="stylesheet" href="./pet.css?v=36">
+  <link rel="stylesheet" href="./extras.css?v=36">
+  <link rel="stylesheet" href="./redesign.css?v=1">
+  <link rel="stylesheet" href="./reception.css?v=4">
+  <link rel="stylesheet" href="./interiors.css?v=1">
+  <link rel="stylesheet" href="./signals.css?v=1">
+  <script id="telegram-webapp" src="https://telegram.org/js/telegram-web-app.js" async></script>
+  <script src="./chibi.js?v=2" defer></script>
+  <script src="./arcade.js?v=37" defer></script>
+  <script src="./stories.js?v=36" defer></script>
+  <script src="./rain.js?v=37" defer></script>
+  <script src="./pet.js?v=38" defer></script>
+  <script src="./sound.js?v=1" defer></script>
+  <script src="./app.js?v=40" defer></script>
+</head>
+<body data-view="home">
+  <svg class="icons" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <symbol id="i-cross" viewBox="0 0 24 24"><path d="M8 2h8v6h6v8h-6v6H8v-6H2V8h6z" fill="currentColor" stroke="none"/></symbol>
+    <symbol id="i-sound" viewBox="0 0 24 24"><path d="M3 9h4l5-4v14l-5-4H3zM16 9a4 4 0 0 1 0 6m3-9a8 8 0 0 1 0 12"/></symbol>
+    <symbol id="i-muted" viewBox="0 0 24 24"><path d="M3 9h4l5-4v14l-5-4H3zM16 9l6 6m0-6-6 6"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M4 12h15m-6-6 6 6-6 6"/></symbol>
+    <symbol id="i-out" viewBox="0 0 24 24"><path d="M6 18 18 6M8 6h10v10"/></symbol>
+    <symbol id="i-play" viewBox="0 0 24 24"><path d="m8 4 13 8-13 8z" fill="currentColor" stroke="none"/></symbol>
+    <symbol id="i-file" viewBox="0 0 24 24"><path d="M6 3h8l4 4v14H6zM13 3v5h5M9 12h6m-6 4h6"/></symbol>
+    <symbol id="i-record" viewBox="0 0 24 24"><path d="M5 20v-6h3v6m3 0V9h3v11m3 0V4h3v16M3 20h19"/></symbol>
+    <symbol id="i-gear" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16M8 3v6m8 0v6m-6 0v6"/></symbol>
+    <symbol id="i-heart" viewBox="0 0 24 24"><path d="M4 5h5v2h2v2h2V7h2V5h5v2h2v7h-2v2h-2v2h-2v2h-2v2h-4v-2H8v-2H6v-2H4v-2H2V7h2z" fill="currentColor" stroke="none"/></symbol>
+    <symbol id="i-pulse" viewBox="0 0 24 24"><path d="M2 13h5l3-7 4 13 3-6h5"/></symbol>
+    <symbol id="i-tea" viewBox="0 0 24 24"><path d="M3 10h14v4a6 6 0 0 1-6 6H9a6 6 0 0 1-6-6zM17 11h2a2.5 2.5 0 0 1 0 5h-2M7 6V3m4 3V2m4 4V3M3 22h16"/></symbol>
+    <symbol id="i-candy" viewBox="0 0 24 24"><path d="M8.2 8.2c2.1-2.1 5.5-2.1 7.6 0s2.1 5.5 0 7.6-5.5 2.1-7.6 0-2.1-5.5 0-7.6ZM13 6.7l4.8-4.3 3.8 3.8-4.3 4.8M6.7 13l-4.3 4.8 3.8 3.8 4.8-4.3M9 10l5 5"/></symbol>
+    <symbol id="i-bolt" viewBox="0 0 24 24"><path d="m13 2-8 12h6l-1 8 9-12h-6z" fill="currentColor" stroke="none"/></symbol>
+    <symbol id="i-pause" viewBox="0 0 24 24"><path d="M8 5v14m8-14v14" stroke-width="3"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></symbol>
+    <symbol id="i-pill" viewBox="0 0 24 24"><path d="M6 20a5 5 0 0 1-3-8l9-9a5 5 0 0 1 8 6l-9 9a5 5 0 0 1-5 2Zm2-12 7 7"/></symbol>
+    <symbol id="i-back" viewBox="0 0 24 24"><path d="M20 12H5m6-6-6 6 6 6"/></symbol>
+    <symbol id="i-chat" viewBox="0 0 24 24"><path d="M4 5h16a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1h-9l-5 4v-4H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Z"/><path d="M8 11h.1m4 0h.1m4 0h.1" stroke-width="2.5"/></symbol>
+    <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><ellipse cx="12" cy="12" rx="4" ry="9"/><path d="M3 12h18"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24"><path d="M19.8 15.2A8.5 8.5 0 0 1 8.8 4.2a8.5 8.5 0 1 0 11 11Z"/><path d="M17.5 4.5v5m-2.5-2.5h5" stroke-linecap="round"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.1"/><path d="M12 2.5v2m0 15v2m9.5-9.5h-2m-15 0h-2m16.2-6.7-1.4 1.4M6.7 17.3l-1.4 1.4m13.4 0-1.4-1.4M6.7 6.7 5.3 5.3" stroke-linecap="round"/></symbol>
+    <symbol id="i-key" viewBox="0 0 24 24"><circle cx="8" cy="9" r="4.5"/><path d="m11.5 12.5 7.5 7.5m-4-4 2.3-2.3m.4 5 2.4-2.4" stroke-linecap="round"/></symbol>
+    <symbol id="i-door" viewBox="0 0 24 24"><path d="M5 21h14M6.5 21V3.5h11V21m-3-8h.1" stroke-linecap="round"/></symbol>
+    <symbol id="i-hand" viewBox="0 0 24 24">
+      <path d="M8 12V5.5a1.5 1.5 0 0 1 3 0V11m0-1.5V4a1.5 1.5 0 0 1 3 0v6m0-1V6a1.5 1.5 0 0 1 3 0v7m0-2.5a1.5 1.5 0 0 1 3 0V15a7 7 0 0 1-7 7h-1.6a6 6 0 0 1-4.4-2l-3.4-3.8a1.6 1.6 0 0 1 2.3-2.2L8 16" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="i-star" viewBox="0 0 24 24">
+      <path d="m12 3 2.6 6.1 6.4.5-4.9 4.2 1.5 6.3L12 16.9 6.4 20.1l1.5-6.3L3 9.6l6.4-.5z" stroke-linejoin="round"/>
+    </symbol>
+  </svg>
+
+  <header class="topbar">
+    <div class="shell bar-inner">
+      <button class="brand" id="brand" aria-label="受付に戻る" data-ru-label="В приёмную">
+        <span class="brand-symbol"><svg><use href="#i-cross"/></svg></span>
+        <span class="brand-type"><b>PANIC CLINIC</b><small data-ru="Клиника для полуночников">夜ふかし診療所</small></span>
+      </button>
+      <div class="bar-right">
+        <span class="online"><i></i><span id="system-label">夜間受付中</span></span>
+        <button class="language-switch" id="language-toggle" type="button" aria-label="ロシア語に切り替える" title="ロシア語に切り替える">
+          <svg aria-hidden="true"><use href="#i-globe"/></svg><span id="language-target" lang="ru">Русский</span>
+        </button>
+        <button class="icon-button theme-switch" id="theme-toggle" type="button" aria-label="夜のテーマ" aria-pressed="false" title="夜のテーマに切り替える">
+          <svg aria-hidden="true"><use id="theme-icon" href="#i-moon"/></svg>
+        </button>
+        <button class="icon-button audio-btn" id="audio-toggle" type="button" aria-label="サウンドをミュート" aria-pressed="false">
+          <svg><use id="audio-icon" href="#i-sound"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="shell">
+    <section id="home" class="screen">
+      <div class="terminal-line">
+        <span><svg aria-hidden="true"><use href="#i-pulse"/></svg><span data-ru="НОЧНАЯ СМЕНА">NIGHT SHIFT</span><b aria-hidden="true">/</b><span data-ru="ПРИЁМНАЯ">受付</span></span>
+        <span class="terminal-timestamp">00:00 <b aria-hidden="true">/</b> <span data-ru="ДЕЛО #4041">FILE #4041</span></span>
+      </div>
+      <div class="hero">
+        <div class="hero-heading">
+          <span class="eyebrow hero-eyebrow"><span class="hero-index">01</span><span data-ru="КЛИНИКА ОТКРЫВАЕТСЯ В ПОЛНОЧЬ">午前零時だけ開く、秘密の診療所</span></span>
+          <h1 aria-label="パニック診療所" data-ru-label="Клиника паники"><span data-ru="Клиника">パニック</span> <span><span data-ru="паники">診療所</span><svg class="hero-cross" aria-hidden="true"><use href="#i-cross"/></svg></span></h1>
+          <div class="subtitle"><span></span> PANIC CLINIC <b>/</b> 4041</div>
+          <div class="reception-note">
+            <span class="note-index" aria-hidden="true">00:00</span>
+            <p><span data-ru="А, ты ещё не спишь. Я тоже.">あ、まだ起きてた。僕も。</span><br> <span data-ru="Чай на столе. Только не садись на шаткий стул.">お茶、そこにあるよ。ぐらつく椅子には座らないでね。</span></p>
+          </div>
+        </div>
+        <div class="hero-menu">
+          <div class="hero-actions">
+            <button class="start-button" id="start-btn">
+              <span class="action-label"><span>01</span><span data-ru="НОВЕЛЛА">ノベル</span></span>
+              <strong data-ru="Начать смену">夜勤をはじめる</strong>
+              <svg class="start-go" aria-hidden="true"><use href="#i-arrow"/></svg>
+            </button>
+            <button class="arcade-shortcut" id="arcade-start" type="button">
+              <span class="action-label"><span>02</span><span data-ru="АРКАДА">アーケード</span></span>
+              <strong>Virus Break</strong>
+              <svg aria-hidden="true"><use href="#i-out"/></svg>
+            </button>
+          </div>
+          <nav class="mini-nav" aria-label="診療端末メニュー" data-ru-label="Меню клиники">
+            <button data-open="info"><svg aria-hidden="true"><use href="#i-file"/></svg><span data-ru="Карта">カルテ</span></button>
+            <button data-open="records"><svg aria-hidden="true"><use href="#i-record"/></svg><span data-ru="Рекорды">記録</span></button>
+            <button data-open="settings"><svg aria-hidden="true"><use href="#i-gear"/></svg><span data-ru="Настройки">設定</span></button>
+          </nav>
+        </div>
+        <button class="hero-art" id="doctor-card" type="button" aria-label="先生に話しかける" data-ru-label="Поговорить с доктором">
+          <span class="art-paper">
+            <span class="poster-circuit" aria-hidden="true"></span>
+            <span class="poster-lettering" aria-hidden="true">4041</span>
+            <span class="poster-side" aria-hidden="true">4041 // NIGHT WARD</span>
+            <span class="art-no"><i aria-hidden="true"></i><span data-ru="ДЕЖУРНЫЙ ВРАЧ">本日の当直医</span></span>
+            <span class="poster-frame-id" aria-hidden="true"><b>B1</b><span>00:00</span></span>
+            <img class="doctor-image" src="./assets/hero.webp?v=35" width="618" height="1000" alt="白衣のユウ先生がこちらに手を伸ばしている" data-ru-alt="Доктор Юу в белом халате протягивает руку" fetchpriority="high">
+            <span class="art-id"><small>DR. YŪ / 01</small><b data-ru="Доктор Юу">ユウ先生</b></span>
+          </span>
+          <span class="art-footer">
+            <span><svg aria-hidden="true"><use href="#i-chat"/></svg><span data-ru="Поговорить с доктором">先生とおしゃべり</span><svg aria-hidden="true" class="art-out"><use href="#i-out"/></svg></span>
+            <span class="doctor-quote"><span id="doctor-line">座って。いい椅子、取っておいたよ。</span></span>
+            <span class="art-collection"><svg aria-hidden="true"><use href="#i-heart"/></svg><span id="stamp-count">0 / 3</span></span>
+          </span>
+        </button>
+      </div>
+
+      <div class="stats" aria-label="プレイヤーの記録" data-ru-label="Статистика игрока">
+        <button class="stat" data-open="records">
+          <svg><use href="#i-record"/></svg><span><small data-ru="Лучший счёт">最高記録 / HI-SCORE</small><strong data-stat="best">00000</strong></span>
+        </button>
+        <button class="stat" data-open="records">
+          <svg><use href="#i-heart"/></svg><span><small data-ru="Сыграно игр">診察回数 / RUNS</small><strong data-stat="runs">00</strong></span>
+        </button>
+        <button class="stat status-stat" data-open="journal">
+          <svg><use href="#i-pulse"/></svg><span><small data-ru="Статус палаты">病棟ステータス / WARD</small><strong><span data-ru="Изоляция">隔離中</span> <i></i></strong></span>
+        </button>
+      </div>
+
+      <div class="home-extra">
+        <section class="panel feed-panel">
+          <div class="panel-header"><span><span class="rec-dot"></span> <span data-ru="Камера в палате">病棟のぞき窓</span> <b data-ru="/ ЭФИР">/ SNEAK PEEK</b></span><span>B1</span></div>
+          <button class="demo-button" id="demo-start" aria-label="ウイルス・ブレイクを開始" data-ru-label="Запустить аркаду «Вирусный прорыв»">
+            <canvas id="demo" width="432" height="128" aria-hidden="true"></canvas>
+            <span class="demo-cover"><span><small data-ru="АРКАДА / ПРОТОКОЛ 01">ARCADE PROTOCOL 01</small><strong data-ru="ВИРУСНЫЙ ПРОРЫВ">VIRUS BREAK</strong></span><span class="demo-arrow"><svg><use href="#i-play"/></svg></span></span>
+          </button>
+        </section>
+        <section class="panel log-panel">
+          <div class="panel-header"><span><span data-ru="Журнал смены">診療日誌</span> <b data-ru="/ B1">/ SHIFT LOG</b></span><span data-ru="Заметки">夜勤メモ</span></div>
+          <button class="log-row" data-open="journal"><time>00:04</time><span data-ru="Подземный блок изолирован">地下病棟を隔離しました</span><svg><use href="#i-out"/></svg></button>
+          <button class="log-row" data-open="info"><time>00:02</time><span data-ru="На дежурстве: доктор Юу">当直担当：ユウ先生</span><svg><use href="#i-out"/></svg></button>
+          <button class="log-row" data-open="secret"><time>--:--</time><span class="redacted" data-ru="На обороте рецепта">処方箋の裏側</span><span class="log-locked" id="log-lock">LOCK</span></button>
+        </section>
+      </div>
+      <aside class="reception-companion" aria-labelledby="companion-title">
+        <div id="pet-dock" class="companion-dock"></div>
+      </aside>
+      <div class="floor-seam">
+        <button id="hidden-door" type="button" aria-label="壁紙のつなぎ目の取っ手" data-ru-label="Ручка на стыке обоев">
+          <svg aria-hidden="true"><use href="#i-door"/></svg><span id="door-hint" hidden data-ru="Подходит ключ">鍵が合う</span>
+        </button>
+      </div>
+    </section>
+
+    <section id="novel" class="screen inner-screen" hidden aria-label="プロローグ" data-ru-label="Пролог">
+      <div class="stage-heading">
+        <button class="text-button" data-home><svg><use href="#i-back"/></svg> <span data-ru="В приёмную">受付に戻る</span></button>
+        <span data-ru="01 / ПРОЛОГ">01 / PROLOGUE</span>
+        <button class="text-button pink" id="skip"><span data-ru="Сразу в аркаду">ゲームへ</span> <svg><use href="#i-arrow"/></svg></button>
+      </div>
+      <div class="vn-window">
+        <button class="vn-scene" id="vn-scene" type="button" data-scene="0" aria-label="会話を進める" data-ru-label="Продолжить диалог">
+          <img id="vn-portrait" src="./assets/portrait-2.webp?v=35" alt="ユウ先生" data-ru-alt="Доктор Юу">
+          <span class="vn-cam"><span class="rec-dot"></span> <span id="vn-location">B1 / 受付</span></span>
+          <span class="vn-error" id="vn-error">SYSTEM /異常検知</span>
+          <span class="vn-frame" aria-hidden="true"></span>
+        </button>
+        <div class="vn-dialog">
+          <div class="vn-meta">
+            <span class="speaker"><small data-ru="ДЕЖУРНЫЙ ВРАЧ">当直医</small><span data-ru="Доктор Юу">ユウ先生</span></span>
+            <span class="vn-progress"><span id="vn-step" aria-hidden="true">01 / 08</span><span id="vn-dots" role="progressbar" aria-label="プロローグ" data-ru-label="Прогресс пролога" aria-valuemin="0"></span></span>
+          </div>
+          <div class="vn-pages">
+            <div class="vn-reserve" aria-hidden="true"></div>
+            <p id="vn-text" aria-hidden="true"></p>
+            <div class="interior-sr" id="vn-announcement" aria-live="polite"></div>
+          </div>
+          <div class="vn-bottom">
+            <div id="vn-choices" class="vn-choices" hidden>
+              <button data-choice="careful"><span data-ru="Действовать осторожно">丁寧に診察する</span> <svg><use href="#i-arrow"/></svg></button>
+              <button data-choice="wild"><span data-ru="Разобраться одним махом">一気に片づける</span> <svg><use href="#i-arrow"/></svg></button>
+            </div>
+            <button class="text-button pink" id="vn-next"><span id="vn-next-label">つづく</span> <svg><use href="#i-arrow"/></svg></button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="door" class="door-screen" hidden aria-labelledby="door-title">
+      <div class="door-top">
+        <button class="text-button" type="button" data-home><svg aria-hidden="true"><use href="#i-back"/></svg><span data-ru="В приёмную">受付に戻る</span></button>
+        <span data-ru="ЗА СТЕНОЙ / 4041">壁の向こう / 4041</span>
+      </div>
+      <div class="door-foyer" id="door-foyer">
+        <button id="door-open" type="button" class="door-object" aria-label="真鍮の鍵で戸を開ける" data-ru-label="Открыть дверь латунным ключом">
+          <span class="door-slab" aria-hidden="true"><span class="door-handle"></span></span>
+        </button>
+        <div class="door-intro">
+          <span class="door-tag" data-ru="НА ПЛАНЕ ЭТОЙ ДВЕРИ НЕТ">見取り図にはない戸</span>
+          <h1 id="door-title" data-ru="За стеной">壁の向こう</h1>
+          <p data-ru="Ручка тёплая. Как будто её только что отпустили.">取っ手があたたかい。今しがた、誰かが手を離したみたいに。</p>
+          <button id="door-unlock" class="door-choice" type="button"><svg aria-hidden="true"><use href="#i-key"/></svg><span data-ru="Повернуть ключ">鍵を回す</span></button>
+        </div>
+      </div>
+      <div class="door-conversation" id="door-conversation" hidden>
+        <div class="door-page"><span data-ru="ГОЛОС В ТЕМНОТЕ">暗がりの声</span><span id="door-turn">01</span></div>
+        <p id="door-reply" class="door-reply" hidden></p>
+        <p id="door-line" class="door-line" aria-live="polite" tabindex="-1"></p>
+        <div id="door-actions" class="door-actions"></div>
+      </div>
+    </section>
+
+    <section id="game" class="screen inner-screen" hidden aria-label="ウイルス・ブレイク" data-ru-label="Вирусный прорыв">
+      <div class="stage-heading game-heading">
+        <button class="text-button" data-game-back><svg><use href="#i-back"/></svg> <span data-ru="В приёмную">受付に戻る</span></button>
+        <span data-ru="02 / АРКАДА">02 / ARCADE PROTOCOL</span>
+        <button class="icon-button" id="pause" aria-label="一時停止" data-ru-label="Пауза" aria-pressed="false"><svg><use href="#i-pause"/></svg></button>
+      </div>
+      <div class="game-layout">
+        <div class="game-main">
+          <div class="game-hud">
+            <span><small data-ru="СЧЁТ">SCORE</small><b id="score">00000</b></span>
+            <span><small data-ru="РЕКОРД">HI-SCORE</small><b id="game-best">00000</b></span>
+            <span><small id="wave">WAVE 01</small><b id="health" aria-label="体力 3 / 3"></b></span>
+          </div>
+          <div class="arena">
+            <canvas id="field" width="432" height="392" aria-label="ウイルス・ブレイクのゲーム画面" data-ru-label="Игровое поле «Вирусного прорыва»"></canvas>
+            <div class="arena-scan"></div>
+            <span id="arena-badge" class="arena-badge" hidden></span>
+            <div class="game-overlay" id="game-overlay" hidden>
+              <div class="overlay-content">
+                <div class="overlay-tag" id="overlay-tag">SYSTEM / BREAK</div>
+                <h2 id="overlay-title">一時停止</h2>
+                <p id="overlay-copy"></p>
+                <div id="over-scores" hidden><span><span data-ru="СЧЁТ">SCORE</span> <b id="end-score">00000</b></span><span><span data-ru="РЕКОРД">HI-SCORE</span> <b id="end-best">00000</b></span></div>
+                <button class="solid-button" id="overlay-primary">再開する <svg><use href="#i-play"/></svg></button>
+                <button class="text-button" id="overlay-home" data-home><span data-ru="В приёмную">受付に戻る</span> <svg><use href="#i-back"/></svg></button>
+              </div>
+            </div>
+          </div>
+          <div class="meter"><span><span data-ru="Импульс">パルス</span> <b id="meter-label">0%</b></span><div class="meter-track"><i id="meter-fill"></i></div><span id="combo">COMBO ×1</span></div>
+          <div class="controls">
+            <div class="joy-wrap"><div class="joystick" id="joystick" aria-label="移動用ジョイスティック" data-ru-label="Джойстик движения"><span>▴</span><span>▾</span><span>◂</span><span>▸</span><i id="joy-knob"></i></div><small data-ru="Движение">移動 / MOVE</small></div>
+            <div class="actions">
+              <div><button class="pulse-button" id="pulse" aria-label="パルスを発動" data-ru-label="Выпустить импульс" aria-disabled="true"><svg><use href="#i-bolt"/></svg></button><small data-ru="Импульс">パルス</small></div>
+              <div><button class="fire-button" id="fire" aria-label="カプセルを投げる" data-ru-label="Бросить капсулу"><svg><use href="#i-pill"/></svg></button><small data-ru="Зажми для атаки">長押し攻撃</small></div>
+            </div>
+          </div>
+          <div class="game-caption"><span><i></i> <span data-ru="B1 / ЭФИР">B1 / LIVE</span></span><span><span data-ru="Слева движение">左で移動</span> <b>／</b> <span data-ru="справа атака">右を長押しで攻撃</span></span></div>
+        </div>
+        <aside class="game-side">
+          <div class="panel-header"><span><span class="rec-dot"></span> <span data-ru="Протокол лечения">治療手順</span></span><span>B1</span></div>
+          <div class="game-side-body">
+            <span class="eyebrow" data-ru="ЛЕЧЕНИЕ / 01">TREATMENT / 01</span>
+            <h2><span class="side-title-word" data-ru="ВИРУСНЫЙ">VIRUS</span><br><span class="side-title-word" data-ru="ПРОРЫВ">BREAK</span><span>.</span></h2>
+            <p data-ru="Уворачивайся от вирусов и бросай капсулы. Побеждай врагов подряд, чтобы набрать больше очков.">ウイルスをよけてカプセルを投げよう。連続で倒すほどスコアが伸びる。</p>
+            <div class="key-row"><span data-ru="Движение">移動</span><kbd>W A S D</kbd></div>
+            <div class="key-row"><span data-ru="Атака (удерживать)">長押し攻撃</span><kbd data-ru="ПРОБЕЛ">SPACE</kbd></div>
+            <div class="key-row"><span data-ru="Импульс">パルス発動</span><kbd>E</kbd></div>
+            <p class="pulse-tip"><svg><use href="#i-bolt"/></svg> <span data-ru="Когда шкала заполнится, импульс сметёт ближайшие вирусы и вражеские снаряды.">ゲージが満タンになったら、パルスで周囲のウイルスと弾を一掃！</span></p>
+            <div class="arcade-id">
+              <canvas id="chibi-avatar" width="35" height="39" aria-hidden="true"></canvas>
+              <span><small data-ru="ПЕРСОНАЖ / 01">PLAYER / 01</small><b data-ru="Доктор Юу">ユウ先生</b></span>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <footer class="shell-footer">
+      <span><span class="footer-cross">✚</span> PANIC CLINIC <span class="sep">/</span> <span data-ru="НОЧНАЯ СМЕНА">NIGHT SHIFT</span></span>
+      <span class="developer"><span data-ru="РАЗРАБОТЧИК:">DEVELOPER:</span> <b>y_yumo67</b></span>
+      <button class="terminal-code" id="terminal-code" aria-label="端末番号 4041" data-ru-label="Терминал № 4041">[ 4041 ]</button>
+    </footer>
+  </main>
+
+  <dialog id="modal" aria-labelledby="modal-title">
+    <div class="modal-bar"><span><span class="rec-dot"></span> <span id="modal-code">TERMINAL</span></span><button class="icon-button" id="modal-close" aria-label="閉じる" data-ru-label="Закрыть"><svg><use href="#i-close"/></svg></button></div>
+    <div class="modal-content"><h2 id="modal-title"></h2><div id="modal-body"></div></div>
+  </dialog>
+  <dialog id="rain" aria-labelledby="rain-title">
+    <div class="rain-field" id="rain-field"></div>
+    <div class="rain-hud">
+      <div class="rain-label"><small data-ru="БОНУС ЗА ПОБЕДУ">勝利ボーナス</small><h2 id="rain-title" data-ru="Вирусный шквал">ウイルスどしゃ降り</h2></div>
+      <div class="rain-count"><span data-ru="Лопнуто">はじけた数</span><b id="rain-score">00</b></div>
+      <div class="rain-count rain-clock"><span data-ru="Осталось">のこり</span><b id="rain-time">22</b></div>
+      <button id="rain-mute" type="button" class="icon-button" aria-label="サウンド"><svg aria-hidden="true"><use id="rain-audio-icon" href="#i-sound"/></svg></button>
+      <button id="rain-close" type="button" class="icon-button" aria-label="ミニゲームを閉じる" data-ru-label="Закрыть мини-игру"><svg aria-hidden="true"><use href="#i-close"/></svg></button>
+    </div>
+    <p class="rain-how" id="rain-how"></p>
+    <div class="rain-summary" id="rain-summary" hidden>
+      <span class="rain-medal" aria-hidden="true">✦</span>
+      <h3 data-ru="Шквал прошёл">どしゃ降り、おしまい</h3>
+      <p id="rain-result" aria-live="polite"></p>
+      <div class="rain-summary-actions">
+        <button id="rain-replay" type="button" class="solid-button"><span data-ru="Ещё шквал">もう一度</span></button>
+        <button id="rain-return" type="button" class="text-button"><span data-ru="К доске">盤に戻る</span></button>
+      </div>
+    </div>
+  </dialog>
+  <div id="toast" class="toast" role="status" hidden></div>
+<script data-pplx-inline-edit>
+(function () {
+  if (window === window.top) return;
+
+  const allowedParentOrigins = ["https://www.perplexity.ai","https://perplexity.ai","https://testing.perplexity.ai","https://staging.perplexity.ai","https://*.preview.i.perplexity.ai","http://perplexity.localhost","http://localhost:1420","http://127.0.0.1:1420","http://localhost:3000","http://127.0.0.1:3000","http://localhost:5173","http://127.0.0.1:5173"];
+  const MAX_FONT_BYTES = 500 * 1024;
+  const MAX_TOTAL_FONT_BYTES = 2 * 1024 * 1024;
+  const DEFAULT_LINE_HEIGHT = 16;
+  let scrollForwarding = false;
+  let scrollRaf = 0;
+  let trustedTopOrigin = null;
+
+  // Allow entries like "https://*.preview.i.perplexity.ai" — the wildcard
+  // matches a single DNS label (no dots), so "https://*.foo" cannot stretch
+  // across multiple labels.
+  function matchesAllowedOrigin(origin) {
+    if (!origin) return false;
+    for (const entry of allowedParentOrigins) {
+      if (!entry.includes("*")) {
+        if (entry === origin) return true;
+        continue;
+      }
+      const pattern = new RegExp(
+        "^" +
+          entry.replace(/[.+?^${}()|[\]\\]/g, "\\$&").replace(/\*/g, "[^.]+") +
+          "$",
+      );
+      if (pattern.test(origin)) return true;
+    }
+    return false;
+  }
+
+  // Trust decision: when the sender is same-origin-visible (event.origin is a
+  // real origin like https://www.perplexity.ai) we trust event.origin directly.
+  // When event.origin is "null" (opaque broker srcdoc), we fall back to the
+  // broker's stamped `parentOrigin` to identify the top window. The fallback
+  // is claim-only — we rely on the browser's native `targetOrigin` enforcement
+  // on the response path (see postToTrustedTop) to ensure replies can't be
+  // delivered to anyone but the actual top window of that claimed origin.
+  function getTrustedParentOrigin(event) {
+    const forwardedParentOrigin =
+      typeof event.data.parentOrigin === "string" ? event.data.parentOrigin : null;
+    const parentOrigin = event.origin === "null" ? forwardedParentOrigin : event.origin;
+    return matchesAllowedOrigin(parentOrigin) ? parentOrigin : null;
+  }
+
+  // All responses go to window.top with targetOrigin = the allowlisted origin.
+  // An attacker that iframes us inside their own null-origin broker can claim
+  // any parentOrigin they like, but the browser will drop the reply whenever
+  // the real top's origin doesn't match — so the screenshot never leaves.
+  function postToTrustedTop(message) {
+    if (!trustedTopOrigin) return;
+    try {
+      window.top.postMessage(message, trustedTopOrigin);
+    } catch (_error) {}
+  }
+
+  const PICK_CAPABILITIES = ["pick"];
+  const PICK_CHAIN_LENGTH = 4;
+  const PICK_MAX_TEXT_CHARS = 120;
+  const PICK_MAX_HTML_CHARS = 300;
+
+  function truncate(value, maxChars) {
+    return value.length > maxChars ? value.slice(0, maxChars - 1) + "…" : value;
+  }
+
+  function isPickableElement(element) {
+    return (
+      element instanceof Element &&
+      element !== document.documentElement &&
+      element !== document.body
+    );
+  }
+
+  function resolvePickTarget(x, y) {
+    if (!Number.isFinite(x) || !Number.isFinite(y)) return null;
+    const element = document.elementFromPoint(x, y);
+    return isPickableElement(element) ? element.closest("svg") || element : null;
+  }
+
+  function pickLabel(element) {
+    if (element.id) return element.localName + "#" + element.id;
+    return [element.localName].concat(Array.from(element.classList).slice(0, 2)).join(".");
+  }
+
+  // Only attributes that help find the element in source. data-* values and URL
+  // query strings or fragments can carry tokens.
+  const PICK_ATTRIBUTES = new Set([
+    "id",
+    "class",
+    "name",
+    "type",
+    "role",
+    "alt",
+    "aria-label",
+    "href",
+    "src",
+  ]);
+
+  function pickAttributeValue(attribute) {
+    return attribute.name === "href" || attribute.name === "src"
+      ? attribute.value.split(/[?#]/)[0]
+      : attribute.value;
+  }
+
+  function describePickElement(element) {
+    const chain = [];
+    for (
+      let current = element;
+      isPickableElement(current) && chain.length < PICK_CHAIN_LENGTH;
+      current = current.parentElement
+    ) {
+      chain.unshift(current);
+    }
+    const attributes = Array.from(element.attributes)
+      .filter((attribute) => PICK_ATTRIBUTES.has(attribute.name))
+      .map((attribute) => ` ${attribute.name}="${pickAttributeValue(attribute).replace(/"/g, "&quot;")}"`)
+      .join("");
+    const text = (element.innerText || element.textContent || "").replace(/\s+/g, " ").trim();
+    return {
+      chain: chain.map(pickLabel),
+      html: truncate(`<${element.localName}${attributes}>`, PICK_MAX_HTML_CHARS),
+      text: text ? truncate(text, PICK_MAX_TEXT_CHARS) : undefined,
+    };
+  }
+
+  // Hover asks once per frame, and innerText on a large section forces layout,
+  // so only the rect is re-read while the pointer stays on the same element.
+  // Clicks ask for fresh details since the page may have changed the element.
+  let lastPick = null;
+
+  function describePickTarget(element, fresh) {
+    if (fresh || lastPick?.element !== element) {
+      lastPick = { element, details: describePickElement(element) };
+    }
+    const rect = element.getBoundingClientRect();
+    return {
+      rect: { x: rect.left, y: rect.top, width: rect.width, height: rect.height },
+      ...lastPick.details,
+    };
+  }
+
+  function inlineAll(original, clone) {
+    if (original.nodeType !== 1 || clone.nodeType !== 1) return;
+
+    try {
+      const computedStyle = getComputedStyle(original);
+      // cssText on a computed style is the serialized declaration in modern
+      // Chromium/Safari — a single read beats enumerating ~400 longhand
+      // properties. Firefox returns "" here, so we fall back on empty.
+      const serialized = computedStyle.cssText;
+      if (serialized) {
+        clone.style.cssText = serialized;
+      } else {
+        const parts = new Array(computedStyle.length);
+        for (let index = 0; index < computedStyle.length; index += 1) {
+          const property = computedStyle[index];
+          parts[index] = `${property}:${computedStyle.getPropertyValue(property)};`;
+        }
+        clone.style.cssText = parts.join("");
+      }
+    } catch (_error) {}
+
+    const originalChildren = original.children;
+    const clonedChildren = clone.children;
+    for (
+      let index = 0;
+      index < originalChildren.length && index < clonedChildren.length;
+      index += 1
+    ) {
+      inlineAll(originalChildren[index], clonedChildren[index]);
+    }
+  }
+
+  function extractFontUrl(srcValue) {
+    const matches = [
+      ...srcValue.matchAll(
+        /url\(["']?([^"')]+)["']?\)(?:\s*format\(["']?([^"')]+)["']?\))?/gi,
+      ),
+    ];
+    if (matches.length === 0) return null;
+    const woff2 = matches.find((m) => m[2] && m[2].toLowerCase().includes("woff2"));
+    if (woff2) return woff2[1];
+    const woff = matches.find((m) => m[2] && m[2].toLowerCase().includes("woff"));
+    if (woff) return woff[1];
+    return matches[0][1];
+  }
+
+  // Cache resolved font URL -> data URI across captures. Fonts on a page
+  // essentially never change, and a batch run emits multiple captures back to
+  // back — without this we'd refetch + re-base64 every time.
+  const fontDataUriCache = new Map();
+  const SRC_DECLARATION_RE = /src\s*:\s*[^;}]+/i;
+
+  async function fetchAsDataUri(url) {
+    if (fontDataUriCache.has(url)) return fontDataUriCache.get(url);
+    let dataUri = null;
+    try {
+      const response = await fetch(url, { mode: "cors", credentials: "omit" });
+      if (response.ok) {
+        const blob = await response.blob();
+        if (blob.size <= MAX_FONT_BYTES) {
+          dataUri = await new Promise((resolve) => {
+            const reader = new FileReader();
+            reader.onloadend = () =>
+              resolve(typeof reader.result === "string" ? reader.result : null);
+            reader.onerror = () => resolve(null);
+            reader.readAsDataURL(blob);
+          });
+        }
+      }
+    } catch (_error) {
+      dataUri = null;
+    }
+    fontDataUriCache.set(url, dataUri);
+    return dataUri;
+  }
+
+  function collectFontFaceRuleTexts() {
+    const rules = [];
+    for (const sheet of document.styleSheets) {
+      let cssRules;
+      try {
+        cssRules = sheet.cssRules;
+      } catch (_error) {
+        continue;
+      }
+      if (!cssRules) continue;
+      for (const rule of cssRules) {
+        const cssText = rule.cssText || "";
+        if (cssText.startsWith("@font-face")) rules.push(cssText);
+      }
+    }
+    return rules;
+  }
+
+  async function buildInlinedFontCss() {
+    const ruleTexts = collectFontFaceRuleTexts();
+    if (ruleTexts.length === 0) return null;
+
+    const resolved = ruleTexts.map((cssText) => {
+      if (!SRC_DECLARATION_RE.test(cssText)) return null;
+      const srcMatch = cssText.match(/src\s*:\s*([^;}]+)[;}]/i);
+      if (!srcMatch) return null;
+      const url = extractFontUrl(srcMatch[1]);
+      if (!url) return null;
+      try {
+        return { cssText, url: new URL(url, document.baseURI).href };
+      } catch (_error) {
+        return null;
+      }
+    });
+
+    const dataUris = await Promise.all(
+      resolved.map((entry) => (entry ? fetchAsDataUri(entry.url) : Promise.resolve(null))),
+    );
+
+    const inlined = [];
+    let totalBytes = 0;
+    for (let index = 0; index < resolved.length; index += 1) {
+      const entry = resolved[index];
+      const dataUri = dataUris[index];
+      if (!entry || !dataUri) continue;
+      const approxBytes = dataUri.length * 0.75;
+      if (totalBytes + approxBytes > MAX_TOTAL_FONT_BYTES) break;
+      totalBytes += approxBytes;
+      inlined.push(entry.cssText.replace(SRC_DECLARATION_RE, `src: url("${dataUri}")`));
+    }
+    return inlined.length > 0 ? inlined.join("\n") : null;
+  }
+
+  function stripExternal(clone) {
+    const images = clone.querySelectorAll("img");
+    for (let index = 0; index < images.length; index += 1) {
+      const src = images[index].getAttribute("src");
+      if (src && !src.startsWith("data:")) images[index].removeAttribute("src");
+    }
+
+    const elements = clone.querySelectorAll("*");
+    for (let index = 0; index < elements.length; index += 1) {
+      const style = elements[index].style.cssText;
+      if (style && style.includes("url(")) {
+        elements[index].style.cssText = style.replace(
+          /url\(["']?(?!data:)[^)"']*["']?\)/gi,
+          "none",
+        );
+      }
+    }
+  }
+
+  function emitScroll() {
+    scrollRaf = 0;
+    if (!scrollForwarding) return;
+    postToTrustedTop({
+      type: "INLINE_EDIT_SCROLL",
+      scrollX: window.scrollX,
+      scrollY: window.scrollY,
+      capabilities: PICK_CAPABILITIES,
+    });
+  }
+
+  window.addEventListener(
+    "scroll",
+    function () {
+      if (!scrollForwarding || scrollRaf) return;
+      scrollRaf = requestAnimationFrame(emitScroll);
+    },
+    { passive: true, capture: true },
+  );
+
+  async function handleCaptureRequest(event) {
+    const requestId = event.data.requestId;
+    const scrollX = window.scrollX;
+    const scrollY = window.scrollY;
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+
+    function postResult(dataUrl) {
+      postToTrustedTop({
+        type: "INLINE_EDIT_SCREENSHOT_RESULT",
+        requestId,
+        dataUrl,
+        scrollX,
+        scrollY,
+      });
+    }
+
+    try {
+      // Wait for any pending web fonts to resolve so both inline metrics and
+      // the @font-face inlining below see the same loaded faces.
+      if (document.fonts && document.fonts.ready) {
+        try {
+          await document.fonts.ready;
+        } catch (_error) {}
+      }
+
+      const clone = document.documentElement.cloneNode(true);
+      inlineAll(document.documentElement, clone);
+
+      const removedNodes = clone.querySelectorAll("script,link[rel=\"stylesheet\"],style");
+      for (let index = 0; index < removedNodes.length; index += 1) {
+        removedNodes[index].remove();
+      }
+
+      stripExternal(clone);
+
+      // Re-embed web fonts as data-URI @font-face rules so the SVG rasterizer
+      // can resolve them — external font URLs aren't fetched during
+      // foreignObject rendering, which would otherwise force a fallback face
+      // and change text metrics.
+      const inlinedFontCss = await buildInlinedFontCss();
+      if (inlinedFontCss) {
+        const styleEl = document.createElement("style");
+        styleEl.textContent = inlinedFontCss;
+        const head = clone.querySelector("head");
+        if (head) head.appendChild(styleEl);
+        else clone.insertBefore(styleEl, clone.firstChild);
+      }
+
+      const html = new XMLSerializer().serializeToString(clone);
+      const svg =
+        `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}">` +
+        '<foreignObject width="100%" height="100%">' +
+        `<div xmlns="http://www.w3.org/1999/xhtml" style="width:${width}px;height:${height}px;overflow:hidden">` +
+        `<div style="position:relative;left:-${scrollX}px;top:-${scrollY}px">` +
+        html +
+        "</div></div></foreignObject></svg>";
+      const svgUrl = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`;
+      const image = new Image();
+      image.onload = function () {
+        const canvas = document.createElement("canvas");
+        canvas.width = width;
+        canvas.height = height;
+        canvas.getContext("2d").drawImage(image, 0, 0);
+        postResult(canvas.toDataURL("image/png"));
+      };
+      image.onerror = function () {
+        postResult(null);
+      };
+      image.src = svgUrl;
+    } catch (_error) {
+      postResult(null);
+    }
+  }
+
+  window.addEventListener("message", function (event) {
+    if (!event.data) return;
+    // Only accept messages from the direct parent frame. Blocks sibling /
+    // unrelated-window postMessage senders that could otherwise reach us.
+    if (event.source !== window.parent) return;
+
+    const trustedParentOrigin = getTrustedParentOrigin(event);
+    if (!trustedParentOrigin) return;
+    trustedTopOrigin = trustedParentOrigin;
+
+    if (event.data.type === "INLINE_EDIT_PICK") {
+      const element = resolvePickTarget(event.data.x, event.data.y);
+      postToTrustedTop({
+        type: "INLINE_EDIT_PICK_RESULT",
+        seq: event.data.seq,
+        target: element ? describePickTarget(element, event.data.fresh === true) : null,
+      });
+      return;
+    }
+
+    if (event.data.type === "INLINE_EDIT_SCROLL_START") {
+      scrollForwarding = true;
+      emitScroll();
+      return;
+    }
+
+    if (event.data.type === "INLINE_EDIT_SCROLL_STOP") {
+      scrollForwarding = false;
+      if (scrollRaf) cancelAnimationFrame(scrollRaf);
+      scrollRaf = 0;
+      return;
+    }
+
+    if (event.data.type === "INLINE_EDIT_SCROLL_BY") {
+      const { deltaX, deltaY, deltaMode } = event.data;
+      if (!scrollForwarding || !Number.isFinite(deltaX) || !Number.isFinite(deltaY)) return;
+      if (deltaMode !== 0 && deltaMode !== 1 && deltaMode !== 2) return;
+      const lineHeight =
+        parseFloat(getComputedStyle(document.documentElement).lineHeight) || DEFAULT_LINE_HEIGHT;
+      const scaleX = deltaMode === 1 ? lineHeight : deltaMode === 2 ? window.innerWidth : 1;
+      const scaleY = deltaMode === 1 ? lineHeight : deltaMode === 2 ? window.innerHeight : 1;
+      // The selection overlay receives the wheel event instead of this iframe.
+      // Instant scrolling preserves trackpad deltas even on smooth-scroll sites.
+      window.scrollBy({ left: deltaX * scaleX, top: deltaY * scaleY, behavior: "instant" });
+      emitScroll();
+      return;
+    }
+
+    if (event.data.type !== "INLINE_EDIT_CAPTURE_REQUEST") return;
+
+    handleCaptureRequest(event);
+  });
+})();
+
+
+</script></body>
+</html>

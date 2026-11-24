@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="840" height="480" viewBox="0 0 840 480">
+<defs>
+ <linearGradient id="l" x2="0" y2="1"><stop stop-color="#252030"/><stop offset=".6" stop-color="#553855"/><stop offset="1" stop-color="#1a1626"/></linearGradient>
+ <radialGradient id="g" cx=".51" cy=".49" r=".67"><stop stop-color="#ca6c9f38"/><stop offset="1" stop-color="#120f1de8"/></radialGradient>
+ <pattern id="h" width="27" height="27" patternUnits="userSpaceOnUse"><path d="M0 0h27v27H0" fill="none" stroke="#a8789b" opacity=".17"/><path d="M0 0h3v3H0" fill="#b185a2" opacity=".42"/></pattern>
+</defs>
+<path fill="url(#l)" d="M0 0h840v480H0z"/>
+<path fill="url(#h)" d="M0 0h840v480H0z"/>
+<g fill="#231c2d" stroke="#986783" stroke-width="2">
+ <path d="M4 88h188l33 25v209H4zM836 88H648l-33 25v209h221z"/>
+ <path d="M25 105h145l26 22v119H25zm790 0H670l-26 22v119h171z" fill="#3a2d44"/>
+ <path d="M34 116h132l18 16v97H34zm772 0H674l-18 16v97h150z" fill="#171a29"/>
+ <path d="M33 259h149v49H33zm774 0H658v49h149z" fill="#50354e"/>
+ <path d="M0 341h223l41 31v49H0zm840 0H617l-41 31v49h264z" fill="#312338"/>
+ <path d="M0 340h223l39 29H0zm840 0H617l-39 29h262z" fill="#6e4963"/>
+ <path d="M314 65h212v247H314z" fill="#352842"/>
+ <path d="M334 91h172v194H334z" fill="#2b233b"/>
+ <path d="M347 106h146v164H347z" fill="#482c48"/>
+ <path d="M419 107v163m-72-109h146m-146 56h146" fill="none" opacity=".4"/>
+ <path d="M0 431h840m-6 30H5m260-86-52 105m363-105 52 105M226 0l41 55h304l42-55" fill="none" opacity=".5"/>
+</g>
+<path fill="#afdec3" d="M43 174h19l9-9 12 25 12-38 11 22h32v2h-34l-8-16-12 36-14-27-7 7H43zM669 184h25l7-9 10 14 11-32 9 27h59v2h-61l-7-22-10 30-11-16-6 8h-26z" opacity=".84"/>
+<path fill="#e4a9ce" d="M345 24h150v5H345zm12 9h126v2H357z"/>
+<g fill="#ed9dba"><path d="M44 269h8v5h-8zm15 0h8v5h-8zm598 0h8v5h-8zm15 0h8v5h-8z"/><path d="M305 64h8v26h-8zm223 0h8v26h-8z" opacity=".5"/></g>
+<path fill="url(#g)" d="M0 0h840v480H0z"/>
+<g font-family="monospace" letter-spacing="3" font-size="12" fill="#d691b7"><text x="42" y="215">B1 / 01</text><text x="672" y="215">B1 / 02</text></g>
+</svg>

@@ -1,0 +1,369 @@
+/* The cabinet, prologue film and companion station share the reception's materials. */
+.interior-sr,
+#modal[data-panel=doctor] #modal-title {
+  position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0;
+  overflow: hidden; clip-path: inset(50%); white-space: nowrap;
+}
+
+#modal[data-panel=doctor] {
+  width: min(94vw, 56rem); max-height: calc(100svh - 24px);
+  border: 1px solid var(--rx-border); border-radius: 11px;
+  background: var(--rx-surface); color: var(--rx-ink);
+}
+#modal[data-panel=doctor] .modal-bar {
+  min-height: 52px; background: var(--rx-paper); color: var(--rx-accent);
+  border-color: var(--rx-border); padding: 3px 10px 3px 18px; z-index: 6;
+}
+#modal[data-panel=doctor] .modal-bar .icon-button {
+  border-color: var(--rx-border); background: var(--rx-surface); color: var(--rx-accent); border-radius: 5px;
+}
+#modal[data-panel=doctor] .modal-content { padding: 0; }
+.consultation { display: grid; grid-template-columns: minmax(0, .87fr) minmax(0, 1.13fr); }
+.consult-photo {
+  position: relative; overflow: hidden; isolation: isolate; min-height: 440px;
+  background:
+    radial-gradient(ellipse at 51% 44%, #b77677 0%, #76414f 48%, #3d2132 100%);
+  color: var(--rx-porcelain);
+}
+.consult-photo::before {
+  position: absolute; content: ""; inset: 11px; z-index: -1;
+  background: url(./assets/ward-plate.svg) center / cover;
+  border: 1px solid #f8e1d355; opacity: .65;
+}
+.consult-photo::after {
+  position: absolute; content: ""; inset: 45% 0 0; pointer-events: none;
+  background: linear-gradient(transparent 52%, #261420ed);
+}
+#visit-portrait {
+  position: absolute; inset: auto 0 3%; width: 100%; height: 91%;
+  object-fit: contain; object-position: center bottom;
+  filter: drop-shadow(0 12px 13px #280d1d80);
+}
+#visit-portrait.react { animation: consult-reaction .23s ease-out; }
+@keyframes consult-reaction { from { opacity: .78; translate: 0 3px; } }
+.consult-caption {
+  position: absolute; z-index: 1; bottom: 22px; left: 25px; display: grid; gap: 2px;
+  text-shadow: 0 2px 10px #24101a; pointer-events: none;
+}
+.consult-caption small { font: 700 .69rem/1.4 var(--mono); letter-spacing: .12em; }
+.consult-caption strong { font: 900 clamp(1.35rem, 3.4vw, 2.25rem)/1.17 var(--pixel); letter-spacing: -.045em; }
+.consult-desk { padding: 19px clamp(18px, 3vw, 34px) 22px; min-width: 0; display: flex; flex-direction: column; }
+.consult-route {
+  display: flex; align-items: center; justify-content: space-between; min-height: 36px; gap: 8px;
+  color: var(--rx-accent); padding-bottom: 4px; border-bottom: 1px solid var(--rx-border);
+}
+.consult-route::before { content: "B1 / 4041"; font: 700 .7rem/1.2 var(--mono); letter-spacing: .12em; }
+.consult-route:has(button:not([hidden]))::before { display: none; }
+#visit-back {
+  display: inline-flex; align-items: center; gap: 6px; min-height: 36px; padding: 0 8px;
+  margin-left: -8px; color: var(--rx-accent); font: 800 .82rem/1.2 var(--pixel); border-radius: 4px;
+}
+#visit-index { font: 700 .75rem/1.2 var(--mono); white-space: nowrap; }
+#modal[data-panel=doctor] #visit-heading {
+  color: var(--rx-ink); font: 900 clamp(1.7rem, 3.2vw, 2.35rem)/1.12 var(--pixel);
+  letter-spacing: -.045em; margin: 17px 0 15px;
+}
+.consult-speech {
+  display: grid; gap: 9px; align-content: start; margin: 0 0 17px;
+  padding: 2px 0 2px 14px; border-left: 2px solid var(--rx-accent); min-width: 0;
+}
+#modal[data-panel=doctor] #visit-line {
+  margin: 0; color: var(--rx-ink); font: 700 1rem/1.58 var(--pixel); white-space: pre-line;
+}
+#visit-reply {
+  justify-self: start; padding: 5px 9px; border-radius: 4px;
+  background: var(--rx-tint); color: var(--rx-accent); font: 800 .8rem/1.4 var(--pixel);
+}
+.consultation[data-mode=story] .consult-speech { min-height: 142px; }
+.consultation[data-mode=story] #visit-line { font-size: 1.09rem; }
+.consultation[data-mode=snack] .consult-photo {
+  background: radial-gradient(ellipse at 53% 45%, #bc8066, #7e4847 50%, #3c2230);
+}
+.consultation[data-mode=pulse] .consult-photo {
+  background: radial-gradient(ellipse at 54% 43%, #a96980, #654354 55%, #322033);
+}
+.consultation button svg, .consultation summary svg { width: 17px; height: 17px; flex: none; }
+.consult-actions, .consult-topics, .consult-tray { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 8px; }
+.consult-actions button, .consult-tray button, .consult-next, .consult-key {
+  display: flex; align-items: center; gap: 10px; min-height: 48px; padding: 8px 12px; text-align: left;
+  border: 1px solid var(--rx-border); background: var(--rx-paper); color: var(--rx-accent);
+  border-radius: 5px; font: 800 .9rem/1.3 var(--pixel);
+}
+.consult-actions .consult-main, .consult-next {
+  background: var(--rx-accent); color: var(--rx-surface); border-color: transparent;
+  min-height: 59px;
+}
+.consult-main { grid-column: 1 / -1; }
+.consult-main > span, .consult-key > span, .consult-next > span { flex: 1; }
+.consult-main small, .consult-next small { display: block; font-size: .74rem; opacity: .88; }
+.consult-next small { margin-bottom: 4px; }
+.consult-main > svg:first-child { width: 22px; height: 22px; }
+.consult-gestures { display: flex; flex-wrap: wrap; column-gap: 14px; margin-top: 4px; }
+.consult-quiet {
+  display: inline-flex; align-items: center; gap: 6px; padding: 4px 5px; min-height: 42px;
+  color: var(--rx-muted); font: 800 .82rem/1.23 var(--pixel); border-radius: 4px;
+}
+.consult-topics { column-gap: 12px; row-gap: 0; border-bottom: 1px solid var(--rx-border); }
+.consult-topics button {
+  display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 7px; min-height: 49px;
+  border-top: 1px solid var(--rx-border); padding: 5px 3px; text-align: left;
+  color: var(--rx-ink); font: 800 .86rem/1.25 var(--pixel);
+}
+.consult-topics small { color: var(--rx-accent); font: 600 .68rem/1.2 var(--mono); }
+.consult-topics svg { width: 14px !important; height: 14px !important; color: var(--rx-accent); }
+.consult-tray button {
+  display: grid; justify-items: start; align-content: center; min-height: 104px; gap: 9px;
+  background:
+    repeating-linear-gradient(135deg, transparent 0 13px, var(--rx-grid) 13px 14px),
+    var(--rx-paper);
+}
+.consult-tray button svg { box-sizing: content-box; width: 24px; height: 24px; padding: 5px; background: var(--rx-tint); border-radius: 4px; }
+.consult-tray button[aria-pressed=true] { border-color: var(--rx-accent); background: var(--rx-tint); }
+.consult-next { width: 100%; }
+.consult-actions button:hover, #visit-back:hover, .consult-quiet:hover, .consult-topics button:hover, .consult-tray button:hover, .consult-key:hover { background: var(--rx-tint); }
+.consult-actions .consult-main:hover, .consult-next:hover { background: color-mix(in oklch, var(--rx-accent), var(--rx-ink) 15%); }
+.consult-footer { margin-top: auto; padding-top: 14px; }
+.consult-key { width: 100%; margin-bottom: 8px; border-color: #b18b59; }
+.consult-file { border: 1px solid var(--rx-border); border-radius: 5px; color: var(--rx-muted); }
+.consult-file summary {
+  list-style: none; display: flex; align-items: center; gap: 8px; cursor: pointer;
+  min-height: 43px; padding: 5px 11px; font: 800 .81rem/1.2 var(--pixel);
+}
+.consult-file summary::-webkit-details-marker { display: none; }
+.consult-file summary:hover { background: var(--rx-paper); }
+.consult-file summary svg { color: var(--rx-accent); }
+.consult-file summary b { margin-left: auto; font: 700 .74rem/1.2 var(--mono); }
+.file-plus::after { content: "+"; color: var(--rx-accent); font: 700 1rem/1 var(--mono); }
+.consult-file[open] .file-plus::after { content: "−"; }
+.consult-file-body { padding: 9px 11px 10px; border-top: 1px solid var(--rx-border); }
+#visit-stamps { display: flex; flex-wrap: wrap; gap: 5px; font: 700 .73rem/1.2 var(--pixel); }
+#visit-stamps > span {
+  display: inline-flex; align-items: center; gap: 4px; padding: 5px 6px;
+  border: 1px dashed var(--rx-border); border-radius: 4px;
+}
+#visit-stamps > span.earned { background: var(--rx-tint); color: var(--rx-accent); border-style: solid; }
+#visit-stamps svg { width: 14px; height: 14px; }
+.consult-trust {
+  display: grid; grid-template-columns: 1fr auto; gap: 6px; margin-top: 9px;
+  font: 700 .73rem/1.3 var(--pixel);
+}
+.consult-trust > i { grid-column: 1 / -1; height: 5px; background: var(--rx-tint); overflow: hidden; }
+#visit-aff { display: block; height: 100%; background: var(--rx-accent); }
+#modal[data-panel=doctor] #visit-clue { font-size: .77rem; color: var(--rx-muted); margin: 8px 0 0; }
+#modal[data-panel=doctor] .pulse-card {
+  padding: 12px; margin: 0; border-color: var(--rx-border); border-radius: 5px; background: var(--rx-paper);
+}
+#modal[data-panel=doctor] .pulse-guide { color: var(--rx-accent); font: 700 .76rem/1.3 var(--mono); }
+#modal[data-panel=doctor] .pulse-lane { height: 15px; margin: 13px 2px; background: var(--rx-surface); border-color: var(--rx-border); }
+#modal[data-panel=doctor] .pulse-zone { background: repeating-linear-gradient(135deg,#a13a58 0 4px,#c67589 4px 8px); }
+#modal[data-panel=doctor] .pulse-marker { background: var(--rx-ink); height: 21px; }
+#modal[data-panel=doctor] .pulse-card .solid-button {
+  justify-content: center; width: 100%; min-height: 44px; border-radius: 4px;
+  background: var(--rx-tint); color: var(--rx-accent); border: 1px solid var(--rx-border); clip-path: none;
+}
+#modal[data-panel=doctor] .pulse-card .solid-button.ready { background: var(--rx-accent); color: var(--rx-surface); }
+#modal[data-panel=doctor] .pulse-feedback { min-height: 0; color: var(--rx-accent) !important; font-size: .81rem; }
+.consultation .pulse-feedback:empty { margin: 0 !important; }
+
+/* A film frame and a separate, steady reading plate. */
+#novel { max-width: 62rem; padding-top: clamp(9px, 2vw, 22px); }
+#novel .stage-heading { min-height: 44px; margin-bottom: 7px; padding: 0; gap: 6px; }
+#novel .stage-heading > span { color: var(--rx-muted); }
+#novel .stage-heading button { min-height: 42px; padding-inline: 7px; color: var(--rx-accent); border-radius: 4px; }
+#novel .stage-heading button:hover { background: var(--rx-tint); }
+#novel .vn-window {
+  padding: 0; overflow: hidden; border: 1px solid var(--rx-border); border-radius: 8px;
+  background: var(--rx-surface); color: var(--rx-ink);
+}
+#novel .vn-scene {
+  height: clamp(270px, 46svh, 470px); border-radius: 0; border: 0; background-color: #251725;
+}
+#novel .vn-scene img {
+  height: 98%; width: 87%; left: 57%;
+  filter: drop-shadow(0 7px 15px #1a0d18af);
+}
+#novel .vn-scene::after {
+  opacity: 1;
+  background:
+    linear-gradient(90deg,#1e111ee0,transparent 42%,transparent 80%,#23121c65),
+    linear-gradient(0deg,#1e111e90,transparent 32%);
+}
+.vn-frame {
+  position: absolute; z-index: 5; pointer-events: none; inset: 13px;
+  background:
+    linear-gradient(#eed0bc,#eed0bc) left bottom / 26px 1px,
+    linear-gradient(#eed0bc,#eed0bc) left bottom / 1px 26px,
+    linear-gradient(#eed0bc,#eed0bc) right bottom / 26px 1px,
+    linear-gradient(#eed0bc,#eed0bc) right bottom / 1px 26px;
+  background-repeat: no-repeat; opacity: .57;
+}
+#novel :is(.vn-cam,.vn-error) {
+  top: 13px; max-width: 56%; border-radius: 3px; background: #2a1825ee; color: var(--rx-porcelain);
+  border-color: #eab5bd55; padding: 6px 8px; font-size: .71rem; letter-spacing: .025em; line-height: 1.35;
+}
+#novel .vn-cam { left: 13px; }
+#novel .vn-error { right: 13px; }
+#novel .vn-dialog {
+  display: grid; grid-template-columns: minmax(125px,.25fr) minmax(0,1fr); grid-template-areas: "meta pages" "meta buttons";
+  gap: 10px 20px; padding: clamp(13px, 2.5vw, 24px);
+  border: 0; border-top: 4px solid var(--rx-accent); border-radius: 0; background: var(--rx-surface);
+}
+.vn-meta {
+  grid-area: meta; display: flex; flex-direction: column; align-items: start; justify-content: space-between; gap: 11px;
+  border-right: 1px solid var(--rx-border); padding-right: 12px;
+}
+#novel .speaker {
+  align-items: start; flex-direction: column; gap: 4px; padding: 0; min-height: auto;
+  background: none; color: var(--rx-ink); font: 900 1.36rem/1.17 var(--pixel); border-radius: 0;
+}
+#novel .speaker small { color: var(--rx-accent); font: 700 .69rem/1.1 var(--mono); letter-spacing: .05em; }
+.vn-progress { display: grid; justify-items: start; gap: 6px; color: var(--rx-muted); font: 700 .75rem/1.2 var(--mono); }
+#novel #vn-dots { display: flex; gap: 3px; }
+#novel #vn-dots i { width: 9px; height: 4px; margin: 0; border: 0; border-radius: 0; background: var(--rx-tint); }
+#novel #vn-dots :is(.read,.on) { background: var(--rx-accent); }
+#novel #vn-dots .read { opacity: .57; }
+.vn-pages { grid-area: pages; min-width: 0; display: grid; }
+#novel :is(#vn-text,.vn-reserve) {
+  grid-area: 1 / 1;
+  min-height: 5.1em; margin: 0; max-width: 64ch; color: var(--rx-ink);
+  font: 700 clamp(1rem, 1.65vw, 1.23rem)/1.55 var(--pixel); white-space: pre-line;
+}
+#novel .vn-reserve { visibility: hidden; }
+#novel .vn-bottom { grid-area: buttons; display: flex; justify-content: end; align-items: end; min-width: 0; }
+#novel #vn-next, #novel .vn-choices button {
+  display: inline-flex; justify-content: space-between; gap: 10px; min-height: 44px;
+  padding: 7px 12px; border: 1px solid var(--rx-border); border-radius: 4px;
+  background: var(--rx-accent); color: var(--rx-surface); font: 800 .9rem/1.24 var(--pixel);
+}
+#novel #vn-next { min-width: 156px; }
+#novel #vn-next:hover, #novel .vn-choices button:hover { filter: brightness(.93); }
+#novel .vn-choices { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); width: 100%; gap: 8px; margin: 0; }
+#novel .vn-choices button + button { background: var(--rx-tint); color: var(--rx-accent); }
+#novel .vn-choices svg { flex: none; width: 17px; height: 17px; }
+body[data-view=novel] .pet { display: none; }
+body[data-view=novel]::after { display: none; }
+
+/* Shizuku's fitted care station; the roaming pet keeps its existing controls. */
+.pet:not(.docked) :is(.pet-care,.pet-care-voice) { display: none; }
+#home .reception-companion { display: block; padding: 0; overflow: hidden; }
+#home .companion-dock, #home .pet.docked {
+  width: 100%; max-width: none; margin: 0; padding: 0;
+}
+#home .pet.docked { touch-action: auto; }
+#home .pet.docked .pet-stack {
+  grid-template: "art care" auto "art voice" auto / minmax(114px, .21fr) minmax(0, 1fr);
+  align-items: stretch; justify-items: stretch; gap: 0;
+}
+#home .pet.docked .pet-hit {
+  grid-area: art; height: auto; width: 100%; min-height: 144px; border-radius: 0;
+  background: radial-gradient(ellipse at 50% 44%,transparent 36px,var(--rx-border) 37px,transparent 38px,transparent 49px,var(--rx-border) 50px,transparent 51px),var(--rx-tint);
+  border-right: 1px solid var(--rx-border); align-items: center; overflow: hidden;
+}
+#home .pet.docked .pet-hit:hover { transform: none; background-color: var(--rx-paper); }
+#home .pet.docked .pet-hit::before {
+  content: ""; position: absolute; inset: 8px; border: 1px solid var(--rx-border); pointer-events: none;
+}
+#home .pet.docked .pet-hit svg.pet-body { width: 91px; height: 104px; margin-top: 13px; }
+#home .pet.docked .pet-hit .pet-shadow { bottom: calc(50% - 35px); width: 45px; }
+#home .pet.docked :is(.pet-name,.pet-bar,.pet-feed,.pet-bubble) { display: none; }
+#home .pet.docked .pet-heart { left: 11%; }
+.pet-care {
+  grid-area: care; min-width: 0; display: grid; grid-template-columns: minmax(0, .6fr) minmax(145px, .9fr) auto;
+  align-items: center; gap: 14px 24px; padding: 16px 20px;
+}
+.pet-care-name { display: grid; gap: 2px; }
+.pet-care-name small { color: var(--rx-accent); font: 700 .69rem/1.2 var(--mono); letter-spacing: .08em; }
+.pet-care-name h2 { margin: 0; color: var(--rx-ink); font: 900 1.55rem/1.12 var(--pixel); letter-spacing: -.04em; }
+.pet-care-meter {
+  display: grid; grid-template-columns: minmax(0,1fr) auto; align-items: baseline;
+  gap: 5px 8px; color: var(--rx-muted); font: 800 .83rem/1.15 var(--pixel);
+}
+#pet-meter-value { font: 700 .77rem/1.2 var(--mono); color: var(--rx-accent); }
+#pet-meter { grid-column: 1 / -1; height: 7px; border-radius: 2px; overflow: hidden; background: var(--rx-tint); }
+#pet-meter i { display: block; height: 100%; background: var(--rx-accent); transition: width .25s var(--rx-ease); }
+.pet-care-actions { display: flex; flex-wrap: wrap; gap: 6px; }
+.pet-care-actions button {
+  display: inline-flex; gap: 6px; align-items: center; justify-content: center; min-height: 44px;
+  padding: 5px 9px; background: var(--rx-paper); color: var(--rx-accent); border: 1px solid var(--rx-border);
+  border-radius: 5px; font: 800 .84rem/1.2 var(--pixel); pointer-events: auto;
+}
+.pet-care-actions button + button { background: var(--rx-accent); color: var(--rx-surface); }
+.pet-care-actions button:hover { filter: brightness(.94); }
+.pet-care-actions svg, .pet-care-voice svg { flex: none; width: 16px; height: 16px; }
+.pet-care-voice {
+  grid-area: voice; display: flex; align-items: center; gap: 7px; min-height: 43px;
+  padding: 7px 20px; min-width: 0; border-top: 1px solid var(--rx-border);
+  color: var(--rx-muted); background: var(--rx-paper); font: 800 .83rem/1.35 var(--pixel);
+}
+.pet-care-voice svg { color: var(--rx-accent); }
+#modal[data-panel=doctor] :is(button,summary):focus-visible,
+#novel button:focus-visible, #home .pet.docked button:focus-visible {
+  outline: 2px solid var(--rx-accent); outline-offset: 2px;
+}
+#novel #vn-scene:focus-visible, #home .pet.docked .pet-hit:focus-visible { outline-offset: -4px; }
+
+@media (max-width: 790px) {
+  .pet-care { grid-template-columns: 1fr 1fr; }
+  .pet-care-actions { grid-column: 1 / -1; }
+}
+@media (max-width: 630px) {
+  #modal[data-panel=doctor] { width: min(calc(100% - 16px), 470px); }
+  #modal[data-panel=doctor] .modal-bar { min-height: 46px; padding-block: 2px; }
+  .consultation { grid-template-columns: 1fr; }
+  .consult-photo { min-height: 0; height: clamp(109px, 21svh, 173px); }
+  .consult-photo::before { inset: 6px; }
+  #visit-portrait {
+    inset: auto 0 0 auto; top: 0; width: 72%; height: 164%;
+    object-position: center top;
+  }
+  .consult-photo::after { inset: 0; background: linear-gradient(90deg,#291422e8, #2914220a 67%); }
+  .consult-caption { bottom: 13px; left: 15px; gap: 4px; }
+  .consult-caption strong { font-size: clamp(1.12rem, 5vw, 1.6rem); }
+  .consult-desk { padding: 6px 13px 13px; }
+  #modal[data-panel=doctor] #visit-heading { margin: 10px 0; }
+  .consult-speech { margin-bottom: 11px; }
+  #modal[data-panel=doctor] #visit-line, .consultation[data-mode=story] #visit-line { font-size: .94rem; line-height: 1.47; }
+  .consultation[data-mode=story] .consult-speech { min-height: 104px; }
+  .consult-footer { padding-top: 9px; }
+  .consult-tray button { min-height: 84px; }
+  .consult-tray button svg { width: 19px; height: 19px; }
+  #novel .stage-heading button { padding-inline: 2px; font-size: .78rem; line-height: 1.22; }
+  #novel .stage-heading button svg { width: 13px; height: 13px; flex: none; }
+  #novel .stage-heading > span { font-size: .62rem; text-align: center; }
+  #novel .vn-scene { height: clamp(166px, 34svh, 330px); }
+  #novel .vn-scene img { left: 53%; width: 97%; height: 89%; }
+  #novel :is(.vn-error,.vn-cam) { font-size: .63rem; top: 8px; padding: 4px 5px; }
+  #novel .vn-cam { left: 8px; }
+  #novel .vn-error { right: 8px; }
+  .vn-frame { inset: 8px; }
+  #novel .vn-dialog {
+    grid-template-columns: minmax(0, 1fr); grid-template-areas: "meta" "pages" "buttons";
+    gap: 9px; padding: 10px 12px 12px;
+  }
+  .vn-meta {
+    flex-direction: row; align-items: end; border: 0; border-bottom: 1px solid var(--rx-border);
+    padding: 0 0 7px;
+  }
+  #novel .speaker { font-size: 1.1rem; }
+  .vn-progress { justify-items: end; }
+  #novel :is(#vn-text,.vn-reserve) { line-height: 1.43; min-height: 7.15em; }
+  #novel #vn-next { min-width: min(100%, 156px); }
+  #novel .vn-choices button { padding: 6px 7px; font-size: .8rem; }
+  #home .pet.docked .pet-stack { grid-template-columns: minmax(76px, .33fr) minmax(0, 1fr); }
+  #home .pet.docked .pet-hit { min-height: 128px; }
+  #home .pet.docked .pet-hit svg.pet-body { width: 69px; height: 83px; }
+  .pet-care { grid-template-columns: 1fr; gap: 7px; padding: 10px; }
+  .pet-care-name { grid-template-columns: minmax(0,1fr) auto; align-items: center; gap: 4px; }
+  .pet-care-name small { grid-column: 2; grid-row: 1; font-size: .61rem; }
+  .pet-care-name h2 { grid-column: 1; grid-row: 1; font-size: 1.25rem; }
+  .pet-care-actions button { flex: 1 1 auto; font-size: .79rem; padding-inline: 6px; }
+  .pet-care-actions svg { width: 14px; height: 14px; }
+  .pet-care-voice { padding-inline: 10px; }
+}
+@media (max-width: 630px) and (max-height: 610px) {
+  #novel .vn-scene { height: 29svh; }
+}
+@media (prefers-reduced-motion: reduce) {
+  #visit-portrait.react, #novel .vn-scene.scene-in img { animation: none; }
+  #pet-meter i { transition: none; }
+}

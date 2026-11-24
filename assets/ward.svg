@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="840" height="480" viewBox="0 0 840 480">
+<defs>
+  <linearGradient id="a" x2="0" y2="1"><stop stop-color="#16141f"/><stop offset=".57" stop-color="#523149"/><stop offset="1" stop-color="#17131e"/></linearGradient>
+  <radialGradient id="b"><stop stop-color="#d785a674"/><stop offset="1" stop-color="#150e1bc2"/></radialGradient>
+  <pattern id="c" width="5" height="5" patternUnits="userSpaceOnUse"><path d="M0 0h1v1H0z" fill="#faabd7" opacity=".17"/></pattern>
+  <linearGradient id="d"><stop stop-color="#281b2b"/><stop offset=".52" stop-color="#654258"/><stop offset="1" stop-color="#2a1e30"/></linearGradient>
+</defs>
+<path fill="url(#a)" d="M0 0h840v480H0z"/>
+<g stroke="#92677f" stroke-width="2">
+  <path fill="#342539" d="M0 30 351 151v161L0 466zM840 30 489 151v161l351 154z"/>
+  <path fill="url(#d)" d="M0 63 351 160v141L0 411zM840 63 489 160v141l351 110z"/>
+  <path fill="#2a1c2c" d="M351 150h138v163H351z"/>
+  <path fill="#15141e" d="M376 174h88v132h-88z"/>
+  <path fill="#543952" d="M387 185h65v122h-65z"/>
+  <path d="M420 187v120M391 240h20m17 0h20" fill="none" stroke="#b47496" stroke-width="3"/>
+  <path fill="#211b28" d="M0 345 350 273v21L0 384zm840 0-350-72v21l350 90z"/>
+  <path fill="#1d1722" d="m36 123 172 40v151L36 358zm767 0-172 40v151l172 44z"/>
+  <path fill="#433047" d="m48 138 148 34v131L48 340zm744 0-148 34v131l148 37z"/>
+  <path fill="#32263b" d="m60 154 125 25v115L60 323zm720 0-125 25v115l125 29z"/>
+  <path fill="#211927" d="m78 164 83 17v45l-83-5zm684 0-83 17v45l83-5z"/>
+  <path fill="#68415a" d="m264 173 64 13v95l-64 15zm312 0-64 13v95l64 15z"/>
+  <path fill="#302439" d="m271 181 50 10v83l-50 12zm298 0-50 10v83l50 12z"/>
+  <path d="m0 480 361-167m-146 167 182-167m228 167L443 313m397 167L479 313M0 450h840M140 388h560M256 348h328M0 0l351 150M840 0 489 150" fill="none" opacity=".35"/>
+</g>
+<path fill="#e0a2b1" d="M291 48h258l-44 17H335zm68 56h122l-19 8h-84zm38 35h46v4h-46z" opacity=".75"/>
+<path fill="#efacd0" d="M408 200h24v18h-24z" opacity=".22"/>
+<path fill="#e1a6bd" d="M418 201h4v15h-4zm-5 5h14v4h-14z"/>
+<path fill="url(#b)" d="M0 0h840v480H0z"/>
+<path fill="url(#c)" d="M0 0h840v480H0z"/>
+<g font-family="monospace" letter-spacing="3" font-size="14" fill="#e4a1bf" opacity=".75"><text x="76" y="202">B1—01</text><text x="678" y="202">B1—02</text></g>
+<path fill="#e69abb" opacity=".65" d="M223 226h11v4h-11zm384 0h11v4h-11z"/>
+</svg>

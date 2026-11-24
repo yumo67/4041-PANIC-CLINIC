@@ -1,0 +1,30 @@
+/* Additions that the original sheets never had: trust meter, aura replies, pet safety. */
+.aff-meter{
+  display:inline-flex;align-items:center;gap:4px;margin:10px 0 0;padding:6px 11px 7px;font-style:normal;
+  font:900 11px/1 var(--pixel);color:var(--red-deep);letter-spacing:.04em;
+  background:var(--blush);border-radius:999px;border:1px solid #e7c7c6
+}
+.aff-meter i{display:block;width:13px;height:13px;color:#e4d2cd}
+.aff-meter i svg{width:13px;height:13px;fill:currentColor;stroke:none;display:block}
+.aff-meter i.on{color:var(--red)}
+.aff-meter b{margin-left:6px;color:var(--red-deep);font-weight:900}
+
+.visit-reply{
+  margin:8px 0 0;padding:9px 11px;border-radius:12px;background:var(--blush);
+  color:var(--red-deep);font:900 13px/1.5 var(--pixel);letter-spacing:.02em;
+  animation:reply-in .25s ease both
+}
+@keyframes reply-in{from{opacity:0;transform:translateY(4px)}}
+
+/* the pet must never swallow clicks meant for the footer */
+.pet{pointer-events:none}
+.pet-hit,.pet-bubble,.pet-name,.pet-tip{pointer-events:auto}
+
+/* keep the hand/star buttons on the same grid as the other visit actions */
+.visit-actions button.wide{grid-column:1/-1}
+.vn-scene img{object-fit:contain;object-position:50% 100%}
+
+/* dialogue portraits: whole picture, no transparency */
+.vn-scene img{filter:drop-shadow(0 9px 18px #150a1047) saturate(1.02)}
+.visit-photo img{filter:drop-shadow(0 3px 5px #52333a3d) saturate(1.02)}
+.profile img{object-position:center 30%}

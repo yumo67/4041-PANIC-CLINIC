@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 560" fill="none" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <pattern id="dots" width="12" height="12" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r=".75" fill="#ffd8cb" fill-opacity=".22"/></pattern>
+    <pattern id="lines" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(34)"><path d="M0 0v7" stroke="#ffd8cb" stroke-opacity=".18" stroke-width="2"/></pattern>
+    <pattern id="barcode" width="33" height="20" patternUnits="userSpaceOnUse"><path d="M1 0v20m6-20v20m5-20v20m2-20v20m7-20v20m7-20v20" stroke="#ffe1d6" stroke-width="1.5"/></pattern>
+  </defs>
+  <path fill="url(#dots)" d="M0 0h720v560H0z"/>
+  <path fill="#f3b2a2" fill-opacity=".1" d="M0 397 562 0h158v57L10 560H0Z"/>
+  <path fill="url(#lines)" d="M0 0h120L0 85Zm720 430v130H536Z"/>
+  <g stroke="#ffded1" stroke-opacity=".29">
+    <path d="M18 76h684M18 483h684M112 15v530M600 15v530M360 16v528M18 280h684" stroke-dasharray="3 7"/>
+    <circle cx="367" cy="263" r="204"/><circle cx="367" cy="263" r="172"/>
+    <circle cx="367" cy="263" r="185" stroke-dasharray="1 6"/>
+    <path d="M88 263h21l6-9 8 16 8-22 8 15h14m390 0h17l6-9 8 16 8-22 8 15h49"/>
+    <path d="M68 327h41m-41 9h28m-28 9h17M627 210h24v27m0 74v26h-24m-540 0H60v-26m0-74v-27h27"/>
+    <path d="M173 130v22m-11-11h22m383 243v22m-11-11h22M525 123v12m-6-6h12m-366 281v12m-6-6h12" stroke-width="1.5"/>
+  </g>
+  <g stroke="#ffe4d7" stroke-opacity=".72" stroke-width="1.5">
+    <path d="M31 17H17v14m672-14h14v14M17 529v14h14m672-14v14h-14"/>
+    <path d="M170 263h14m366 0h14M367 56v14m0 386v14"/>
+  </g>
+  <path fill="url(#barcode)" opacity=".64" d="M41 510h92v15H41z"/>
+</svg>
